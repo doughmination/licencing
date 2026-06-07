@@ -1,6 +1,6 @@
 # Estrogen Source-Available Licence (ESAL)
 
-**Version:** ESAL-1.4
+**Version:** ESAL-1.5
 **Author:** Clove Nytrix Doughmination Twilight
 **Copyright:** © 2026
 

@@ -1,6 +1,6 @@
 # The Estrogen Source-Available Licence
 
-**Version 1.4**
+**Version 1.5**
 
 This Licence may be referred to as the **Estrogen Source-Available Licence (ESAL)**. This specific version may be referred to as **ESAL‑1.4**.
 
@@ -74,7 +74,7 @@ If a party is **not** listed within the official licensing repository or accompa
 > The official LICENCING repository is maintained by Clove Nytrix Doughmination Twilight and may be referenced within project documentation or licence notices.
 
 Official licensing records:
-https://github.com/doughmination/licencing
+https://git.gay/doughmination/licencing
 
 ---
 

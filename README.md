@@ -19,3 +19,5 @@ It is a **source-available licence**, meaning the source code is visible and mod
 Created and maintained by:
 
 **Clove Nytrix Doughmination Twilight**
+
+Contact Clove at [admin@doughmination.win](mailto:admin@doughmination.win)

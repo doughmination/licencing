@@ -176,8 +176,7 @@ for GITHUB_OWNER in "${GITHUB_OWNERS[@]}"; do
     fi
 
     git add "$target_name"
-    git -c user.name="license-bot" -c user.email="license-bot@users.noreply.github.com" \
-      commit -m "$COMMIT_MESSAGE" -q
+    git commit -m "$COMMIT_MESSAGE" -q
 
     if [[ $USE_GH -eq 1 ]]; then
       if git push origin "HEAD:$branch" -q 2>/dev/null; then

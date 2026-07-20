@@ -2,7 +2,7 @@
 
 **Version 2.3**
 
-This Licence may be referred to as the **Estrogen Source-Available Licence (ESAL)**. This specific version may be referred to as **ESAL-2.1**.
+This Licence may be referred to as the **Estrogen Source-Available Licence (ESAL)**. This specific version may be referred to as **ESAL-2.3**.
 
 Copyright © 2026 Clove Nytrix Doughmination Twilight.
 

@@ -1,6 +1,6 @@
 # The Estrogen Source-Available Licence
 
-**Version 2.2**
+**Version 2.3**
 
 This Licence may be referred to as the **Estrogen Source-Available Licence (ESAL)**. This specific version may be referred to as **ESAL-2.1**.
 
@@ -76,7 +76,7 @@ If a party is not listed within the official licensing repository or accompanyin
 
 Official licensing records:
 
-https://git.stupid.cat/c/licencing
+[https://github.com/doughmination/licencing](https://github.com/doughmination/licencing)
 
 ---
 

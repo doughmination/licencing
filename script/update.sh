@@ -9,7 +9,7 @@ GITHUB_OWNERS=(
   "clove-archives"
 )
 
-LICENSE_SOURCE="../LICENSE.md"
+LICENSE_SOURCE="../LICENCE.md"
 COMMIT_MESSAGE="chore: update licence"
 
 EXCLUDE_REPOS=(

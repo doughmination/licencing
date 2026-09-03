@@ -5,7 +5,7 @@ set -euo pipefail
 
 GITHUB_OWNERS=(
   "doughmination"
-  "clove-modding"
+  "clove-web"
   "clove-archives"
 )
 
@@ -16,6 +16,8 @@ EXCLUDE_REPOS=(
   "nginx-config"
   "licencing"
   "tg"
+  "sandrone-web"
+  "email-server"
 )
 
 TMP_ROOT="$(mktemp -d)"

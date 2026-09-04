@@ -1,20 +1,26 @@
-name: Populate
+name: Sync licence
 
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 jobs:
-  run:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run the script
+      - name: Configure git identity + gh auth
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.LICENCE_SYNC_TOKEN }}
         run: |
-          chmod +x ./scripts/update.sh
-          ./scripts/update.sh
+          git config --global user.name  "licence-bot"
+          git config --global user.email "324896816+licence-bot@users.noreply.github.com"
+          gh auth setup-git
+          
+      - name: Run sync
+        working-directory: scripts
+        env:
+          GH_TOKEN: ${{ secrets.LICENCE_SYNC_TOKEN }}
+        run: |
+          chmod +x ./sync-licence.sh
+          ./sync-licence.sh

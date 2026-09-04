@@ -22,5 +22,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.LICENCE_SYNC_TOKEN }}
         run: |
-          chmod +x ./sync-licence.sh
-          ./sync-licence.sh
+          chmod +x ./update.sh
+          ./update.sh

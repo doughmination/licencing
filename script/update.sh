@@ -130,55 +130,30 @@ for GITHUB_OWNER in "${GITHUB_OWNERS[@]}"; do
       fi
     fi
 
-    found_name=""
-    for candidate in LICENCE LICENCE.md LICENCE.txt licence licence.md licence.txt \
-                     LICENSE LICENSE.md LICENSE.txt license license.md license.txt; do
-      if [[ -f "$dest/$candidate" ]]; then
-        found_name="$candidate"
-        break
-      fi
-    done
+    canonical="$(basename "$LICENSE_SOURCE")"   # e.g. LICENCE.md
 
-    if [[ -z "$found_name" ]]; then
-      ext="${LICENSE_SOURCE##*.}"
-      if [[ "$ext" == "$LICENSE_SOURCE" ]]; then
-        target_name="LICENCE"
-      else
-        target_name="LICENCE.$ext"
-      fi
-    else
-      # Rewrite American -> British, preserving extension and case style.
-      case "$found_name" in
-        LICENSE)      target_name="LICENCE" ;;
-        LICENSE.md)   target_name="LICENCE.md" ;;
-        LICENSE.txt)  target_name="LICENCE.txt" ;;
-        license)      target_name="licence" ;;
-        license.md)   target_name="licence.md" ;;
-        license.txt)  target_name="licence.txt" ;;
-        *)            target_name="$found_name" ;;
-      esac
+    # Remove every root-level licence file (either spelling, any case, any ext)
+    # except the canonical name, so stray variants can't pile up.
+    while IFS= read -r f; do
+      [[ -n "$f" && "$f" != "$canonical" ]] || continue
+      log "  Removing stray licence file: $f"
+      git -C "$dest" rm -q --ignore-unmatch -- "$f"
+    done < <(git -C "$dest" ls-files | grep -iE '^licen[sc]e(\.[a-z0-9]+)?$' || true)
 
-      if [[ "$target_name" != "$found_name" ]]; then
-        log "  Renaming $found_name -> $target_name in $repo"
-        git -C "$dest" mv "$found_name" "$target_name"
-      fi
-    fi
+    # Write the up-to-date licence as the single canonical file.
+    cp "$LICENSE_SOURCE" "$dest/$canonical"
+    git -C "$dest" add -- "$canonical"
 
-    cp "$LICENSE_SOURCE" "$dest/$target_name"
-
-    pushd "$dest" >/dev/null
-
-    if git status --porcelain -- "$target_name" | grep -q .; then
-      :
-    else
+    # Skip only if nothing is staged (content identical AND no strays removed).
+    if git -C "$dest" diff --cached --quiet; then
       log "$repo already up to date, nothing to commit."
       UNCHANGED+=("$label")
-      popd >/dev/null
       continue
     fi
 
-    git add "$target_name"
-    git commit -m "$COMMIT_MESSAGE" -q
+    git -C "$dest" commit -m "$COMMIT_MESSAGE" -q
+
+    pushd "$dest" >/dev/null
 
     if [[ $USE_GH -eq 1 ]]; then
       if git push origin "HEAD:$branch" -q 2>/dev/null; then

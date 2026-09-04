@@ -18,7 +18,7 @@ jobs:
           gh auth setup-git
           
       - name: Run sync
-        working-directory: scripts
+        working-directory: script
         env:
           GH_TOKEN: ${{ secrets.LICENCE_SYNC_TOKEN }}
         run: |
